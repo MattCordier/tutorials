@@ -20,3 +20,13 @@ ctx.strokeRect(20, 150, 150, 100);
 
 // clearReact()
 ctx.clearRect(25, 25, 100, 20);
+
+// fillText()
+ctx.font = '30px Ariel'
+ctx.fillStyle = 'red';
+ctx.fillText('Hello World', 400, 50);
+
+// strokeText()
+ctx.lineWidth = 1
+ctx.strokeStyle = 'orange';
+ctx.strokeText('Hello World', 400, 100);
