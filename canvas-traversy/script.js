@@ -33,25 +33,51 @@ console.log(ctx)
 
 // Paths
 
-// Triangle
-ctx.beginPath();
-ctx.moveTo(50, 50);
-ctx.lineTo(150, 50);
-ctx.lineTo(100, 200);
-// ctx.lineTo(50, 50);
+// // Triangle
+// ctx.beginPath();
+// ctx.moveTo(50, 50);
+// ctx.lineTo(150, 50);
+// ctx.lineTo(100, 200);
+// // ctx.lineTo(50, 50);
+// // ctx.closePath();
+// ctx.fillStyle = 'coral'
+// ctx.fill();
+
+// ctx.beginPath();
+// ctx.moveTo(200, 50);
+// ctx.lineTo(150, 200);
+// ctx.lineTo(250, 200);
 // ctx.closePath();
-ctx.fillStyle = 'coral'
-ctx.fill();
+// ctx.stroke();
 
-ctx.beginPath();
-ctx.moveTo(200, 50);
-ctx.lineTo(150, 200);
-ctx.lineTo(250, 200);
-ctx.closePath();
+// // Rectangle
+// ctx.beginPath();
+// ctx.rect(300, 50, 150, 100);
+// ctx.fillStyle = 'teal'
+// ctx.fill();
+
+// Arcs
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+
+// Draw head
+ctx.arc(centerX, centerY, 200, 0, Math.PI * 2);
+
+// Move to mouth
+ctx.moveTo(centerX + 100, centerY)
+
+// Draw mouth
+ctx.arc(centerX, centerY, 100, 0, Math.PI, false);
+
+// Move to left eye
+ctx.moveTo(centerX - 60, centerY - 80)
+
+// Draw left eye
+ctx.arc(centerX - 80, centerY - 80, 20, 0, Math.PI * 2, false);
+
+// Move to right eye
+ctx.moveTo(centerX + 100, centerY - 80)
+
+// Draw right eye
+ctx.arc(centerX + 80, centerY - 80, 20, 0, Math.PI * 2, false);
 ctx.stroke();
-
-// Rectangle
-ctx.beginPath();
-ctx.rect(300, 50, 150, 100);
-ctx.fillStyle = 'teal'
-ctx.fill();
