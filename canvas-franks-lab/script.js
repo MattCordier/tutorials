@@ -15,17 +15,19 @@ console.log(ctx);
 
 
 const mouse = {
-    x: null,
-    y: null,
+    x: undefined,
+    y: undefined,
 }
 
 canvas.addEventListener('click', function(e){
     mouse.x = e.x;
     mouse.y = e.y;
-    
-    drawEyeBall()
 })
 
+canvas.addEventListener('mousemove', function(e){
+    mouse.x = e.x;
+    mouse.y = e.y;
+})
 
 function drawEyeBall() {
     ctx.beginPath();
@@ -44,5 +46,13 @@ function drawEyeBall() {
     ctx.arc(mouse.x, mouse.y, 27, 0, Math.PI * 2);
     ctx.fill();
 }
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawEyeBall();
+    requestAnimationFrame(animate);
+}
+
+animate();
 
 
