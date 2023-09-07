@@ -13,35 +13,36 @@ window.addEventListener('resize', function(){
 // View CanvasRenderingContext2D in dev tools
 console.log(ctx);
 
-ctx.beginPath();
-ctx.fillStyle = 'white';
-ctx.arc(100, 100, 50, 0, Math.PI * 2);
-ctx.fill();
 
-ctx.beginPath();
-ctx.strokeStyle = 'red';
-ctx.lineWidth = 5;
-ctx.arc(100, 100, 30, 0, Math.PI * 2);
-ctx.stroke();
+const mouse = {
+    x: null,
+    y: null,
+}
 
-ctx.beginPath();
-ctx.fillStyle = 'black';
-ctx.arc(100, 100, 27, 0, Math.PI * 2);
-ctx.fill();
+canvas.addEventListener('click', function(e){
+    mouse.x = e.x;
+    mouse.y = e.y;
+    
+    drawEyeBall()
+})
 
-ctx.beginPath();
-ctx.fillStyle = 'white';
-ctx.arc(225, 100, 50, 0, Math.PI * 2);
-ctx.fill();
 
-ctx.beginPath();
-ctx.strokeStyle = 'red';
-ctx.lineWidth = 5;
-ctx.arc(225, 100, 30, 0, Math.PI * 2);
-ctx.stroke();
+function drawEyeBall() {
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
+    ctx.fill();
 
-ctx.beginPath();
-ctx.fillStyle = 'black';
-ctx.arc(225, 100, 27, 0, Math.PI * 2);
-ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+    ctx.arc(mouse.x, mouse.y, 30, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'black';
+    ctx.arc(mouse.x, mouse.y, 27, 0, Math.PI * 2);
+    ctx.fill();
+}
+
 
