@@ -23,6 +23,9 @@ const mouse = {
 canvas.addEventListener('click', function(e){
     mouse.x = e.x;
     mouse.y = e.y;
+    for (let i = 0; i < 10; i++){
+        particlesArray.push(new Particle())
+    }
 })
 
 canvas.addEventListener('mousemove', function(e){
@@ -32,11 +35,11 @@ canvas.addEventListener('mousemove', function(e){
 
 class Particle {
     constructor() {
-        // this.x = mouse.x;
-        // this.y = mouse.y;
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 1;
+        this.x = mouse.x;
+        this.y = mouse.y;
+        // this.x = Math.random() * canvas.width;
+        // this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 16 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
     }
@@ -44,24 +47,16 @@ class Particle {
     update(){
         this.x += this.speedX;
         this.y += this.speedY
+        if (this.size > 0.2) {
+            this.size -= 0.1
+        }
     }
 
     draw(){
         ctx.beginPath();
         ctx.fillStyle = 'white';
-        ctx.arc(this.x, this.y, 20, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 5;
-        ctx.arc(this.x, this.y, 10, 0, Math.PI * 2);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.fillStyle = 'black';
-        ctx.arc(this.x, this.y, 7, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();      
     }
 }
 
@@ -69,14 +64,18 @@ function handleParticles() {
     for (let i = 0; i < particlesArray.length; i++){
         particlesArray[i].update();
         particlesArray[i].draw();
+        if (particlesArray[i] <= 0.3) {
+            particlesArray.splice(i, 1);
+            i--;
+        }
     }
 }
 
-function init() {
-    for (let i = 0; i < 100; i++){
-        particlesArray.push(new Particle())
-    }
-}
+// function init() {
+//     for (let i = 0; i < 100; i++){
+//         particlesArray.push(new Particle())
+//     }
+// }
 console.log(particlesArray)
 
 function animate() {
@@ -84,7 +83,7 @@ function animate() {
     handleParticles();
     requestAnimationFrame(animate);
 }
-init();
+// init();
 animate();
 
 
